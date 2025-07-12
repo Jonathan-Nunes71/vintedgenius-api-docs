@@ -1,0 +1,77 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Google Custom Search",
+    "version": "1.0.0",
+    "description": "Appelle l'API Google Custom Search pour faire des recherches web et récupérer les résultats."
+  },
+  "servers": [
+    {
+      "url": "https://www.googleapis.com"
+    }
+  ],
+  "paths": {
+    "/customsearch/v1": {
+      "get": {
+        "operationId": "rechercheGoogle",
+        "summary": "Effectue une recherche Google personnalisée",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Texte de la recherche",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "required": true,
+            "description": "Clé API Google",
+            "schema": {
+              "type": "string",
+              "default": "AIzaSyApNTGlEEVEsAQamS5BnXSh14UsftXmb5c"
+            }
+          },
+          {
+            "name": "cx",
+            "in": "query",
+            "required": true,
+            "description": "Identifiant du moteur personnalisé",
+            "schema": {
+              "type": "string",
+              "default": "d7f020be7fcc94a1d"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Résultats de la recherche",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": { "type": "string" },
+                          "link": { "type": "string" },
+                          "snippet": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
